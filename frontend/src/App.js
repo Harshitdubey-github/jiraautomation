@@ -6,6 +6,9 @@ import TranscriptionDisplay from './components/TranscriptionDisplay';
 import ActionConfirmation from './components/ActionConfirmation';
 import TranscriptParser from './components/TranscriptParser';
 
+// Get API URL from environment variable or use default
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -24,7 +27,7 @@ function App() {
 
   const handleLogin = () => {
     // Redirect to Jira OAuth login
-    window.location.href = 'http://localhost:8000/api/auth/login';
+    window.location.href = `${API_URL}/api/auth/login`;
   };
 
   const handleProjectSelect = (project) => {
@@ -42,7 +45,7 @@ function App() {
 
   const handleConfirmAction = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/jira/execute', {
+      const response = await fetch(`${API_URL}/api/jira/execute`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +61,7 @@ function App() {
         throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
       }
 
-      const data = await response.json();
+      await response.json();
       setError(null);
       setTranscription('');
       setParsedCommand(null);
@@ -81,7 +84,7 @@ function App() {
 
   const parseTranscription = async (text) => {
     try {
-      const response = await fetch('http://localhost:8000/api/transcribe/parse', {
+      const response = await fetch(`${API_URL}/api/transcribe/parse`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,8 +101,7 @@ function App() {
       }
 
       const data = await response.json();
-      setParsedCommand(data.command);
-      setError(null);
+      setParsedCommand(data);
     } catch (error) {
       console.error('Error parsing transcription:', error);
       setError(`Failed to parse transcription: ${error.message}`);
