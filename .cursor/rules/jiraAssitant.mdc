@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: "Voice-Enabled Jira Assistant Rules – Guide for AI Code Generation and Workflow Automation"
+globs: ["*"]
+alwaysApply: true
+---
+
+# General Guidelines
+- Focus exclusively on the voice-enabled Jira assistant functionality.
+- Always include a confirmation step before executing any changes (e.g., Jira updates).
+- Do not introduce unrelated features or modify global authentication/session logic.
+- Provide clear summaries of proposed actions so users can confirm before execution.
+
+# Front-End (React)
+- Use React with JavaScript to build UI components.
+- Implement functional components using hooks; keep components modular.
+- Maintain consistent naming conventions and file structure.
+- Integrate the Web Audio API for recording short audio clips.
+- Display transcriptions, parsed commands, and confirmation prompts in an intuitive, editable interface.
+
+# Back-End (Python)
+- Use Python with FastAPI (or Flask as an alternative) to create RESTful endpoints.
+- Isolate integrations with Deepgram (transcription), Jira API (for querying/updating tasks), and OpenAI (command parsing) in separate modules.
+- Securely manage Jira OAuth tokens and session state using Supabase.
+- Implement robust error handling and detailed logging for external API calls.
+
+# Integration Workflows
+- Convert voice transcripts into structured JSON actions before invoking any Jira API.
+- Enforce a confirmation workflow for every action (query, comment, update, create, delete).
+- Keep the logic for handling manual Teams transcript input separate from the live voice command process.
+- Ensure project context is passed consistently into all LLM prompts for accurate interpretation.
+
+# Restrictions & Best Practices
+- Do not alter core authentication or session management components.
+- Avoid modifying third-party libraries or framework defaults without explicit justification.
+- All new code must integrate into designated modules without affecting unrelated functionality.
+- Test new features incrementally; provide unit tests for API integrations and key workflows.
+- Document complex logic and integration points thoroughly in both code comments and separate markdown files.
+
+# References
+- When appropriate, include external references (e.g., @service-template.ts) to bolster context.

@@ -1,0 +1,70 @@
+.voice-commands {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.voice-commands h1 {
+  color: #172B4D;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.description {
+  color: #42526E;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+.processing-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+  color: #42526E;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0052CC;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background-color: #FFEBE6;
+  color: #DE350B;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.transcript-result {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transcript-result h2 {
+  color: #172B4D;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.transcript-result p {
+  color: #42526E;
+  line-height: 1.5;
+  font-size: 1.1rem;
+} 
